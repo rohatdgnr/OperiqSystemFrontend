@@ -1,0 +1,285 @@
+/* Global stiller */
+:root {
+    --primary-color: #1d2635; /* Dark Mode ana rengi */
+    --secondary-color: #2a3a4e; /* Sidebar rengi */
+    --highlight-color: #f39c12; /* Öne çıkan renk */
+    --background-color: #f5f7fa; /* Arka plan rengi */
+    --text-color: #ffffff; /* Metin rengi */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 10px; /* Yuvarlatılmış köşeler */
+    --transition-speed: 0.3s; /* Geçiş animasyon hızı */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* App Wrapper */
+.app-container {
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+    overflow: hidden; /* Taşmayı önlemek için */
+}
+
+/* Header */
+.header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    background-color: var(--secondary-color);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: fixed;
+    top: 100px; /* Header'ın altında başlasın */
+    left: 0;
+    height: calc(100vh - 100px); /* Header yüksekliği çıkarıldı */
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Scroll için */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar li {
+    margin: 15px 0;
+}
+
+.sidebar a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all var(--transition-speed);
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Content */
+.content {
+    margin-left: 220px; /* Sidebar genişliği kadar */
+    padding: 20px 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    color: var(--primary-color); /* Varsayılan metin rengi */
+    overflow-y: auto; /* Scroll için */
+    margin-top: 110px; /* Header'ın yüksekliği kadar */
+}
+
+/* Sayfa Başlığı */
+.content h2 {
+    color: var(--primary-color); /* Başlık görünür olacak */
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Metin Stilleri */
+.content p {
+    font-size: 16px;
+    color: #2a3a4e; /* Sidebar'a uygun koyu bir ton */
+    margin-bottom: 20px;
+}
+
+/* Card */
+.card {
+    background-color: #ffffff;
+    color: var(--primary-color); /* Kart üzerindeki metin */
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Styling */
+.musteri-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.musteri-table th, .musteri-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.musteri-table th {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.musteri-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.musteri-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        top: 0;
+        margin-top: 60px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    .sidebar a {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+/* Scrollbar Özelleştirme */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--highlight-color);
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #f39c12;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #e67e22;
+  }
+  
+
+  .siparisler {
+    padding: 20px;
+  }
+  
+  .siparisler h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .siparisler ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .siparisler li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .siparisler li:hover {
+    background-color: #f1f1f1;
+  }
+  
